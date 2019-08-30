@@ -77,14 +77,14 @@ public class ervinClueSolver {
             weapon = random.nextInt(6) + 1;
             location = random.nextInt(10) + 1;
             murder = random.nextInt(6) + 1;
-            solution = jack.checkAnswer(weapon, location, murder);
+            System.out.println(jack.checkAnswer(weapon, location, murder));
 
 
         //answer = new Theory(weapon, location, murder);
-        answer = ".";
+
         // shit is broken
         // OUTPUT
-        System.out.println("Total Checks = " + jack.getTimesAsked() + ", Solution " + answer);
+        System.out.println("Total Checks = " + jack.getTimesAsked() + ", Solution ");
 
         if (jack.getTimesAsked() > 20) {
             System.out.println("FAILED!! You're a horrible Detective...");
