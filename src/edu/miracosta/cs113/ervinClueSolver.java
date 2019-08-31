@@ -66,21 +66,14 @@ public class ervinClueSolver {
 
 
         //to replace the do loop of randomness I will start with an aimed
-       /* do {
+        do {
             weapon = random.nextInt(6) + 1;
             location = random.nextInt(10) + 1;
             murder = random.nextInt(6) + 1;
             solution = jack.checkAnswer(weapon, location, murder);
-        } while (solution != 0);*/
+        } while (solution != 0);
 
-
-            weapon = random.nextInt(6) + 1;
-            location = random.nextInt(10) + 1;
-            murder = random.nextInt(6) + 1;
-            System.out.println(jack.checkAnswer(weapon, location, murder));
-
-
-        //answer = new Theory(weapon, location, murder);
+        answer = new Theory(weapon, location, murder);
 
         // shit is broken
         // OUTPUT
@@ -92,6 +85,24 @@ public class ervinClueSolver {
             System.out.println("WOW! You might as well be called Batman!");
         }
 
+        int testSolution, testMurder = 0, testWeapon=0, testLocation=0;
+        AssistantJack newJack = new AssistantJack(answerSet);
+        Theory newAnswer;
+
+        System.out.println("This is my New Jack system.");
+        do {
+            for (int i = 0; i < 6 ; i++)
+            {
+                testWeapon = i;
+                testMurder = i;
+                testLocation = i;
+            }
+
+            testSolution = newJack.checkAnswer(testWeapon, testLocation, testMurder);
+        } while (solution < 3);
+
+        newAnswer = new Theory(weapon, location, murder);
+        System.out.println("Total Checks = " + newJack.getTimesAsked() + ", Solution ");
     }
 
 }
