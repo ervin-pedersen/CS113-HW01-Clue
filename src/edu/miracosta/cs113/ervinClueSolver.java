@@ -63,21 +63,54 @@ public class ervinClueSolver {
 
         // PROCESSING
         jack = new AssistantJack(answerSet);
+        weapon = 0;
+        location = 1;
+        murder = 1;
+        int[] weapons = {1,2,3,4,5,6};
+        int[] locations = {1,2,3,4,5,6,7,8,9,10};
+        int[] murders = {1,2,3,4,5,6};
+        int i, j, k;
+        solution = 3;
+        for(i = 1;i < 7;i++)
+        {   if (solution == 0)
+            break;
+            weapon = i;
+            for(j = 1;j<11; j++)
+            {   if (solution == 0)
+                break;
+                location = j;
+                for(k=1;k<7;k++)
+                {
+                    murder = k;
+                    solution = jack.checkAnswer(i, j, k);
+                    if (solution == 3) {
+                        //System.out.println("Solution = 3");
+                    } else if (solution == 2) {
+                        //System.out.println("Solution = 2");
+                    } else if (solution == 1) {
+                        //System.out.println("Solution = 1");
+                    } else if (solution == 0)
+                        {
+                        System.out.println("Ding Winner!");
+
+                        break;
+                        }
+                    else
+                    {
+                        System.out.println("Something went wrong");
+                    }
+
+                }
 
 
-        //to replace the do loop of randomness I will start with an aimed
-        do {
-            weapon = random.nextInt(6) + 1;
-            location = random.nextInt(10) + 1;
-            murder = random.nextInt(6) + 1;
-            solution = jack.checkAnswer(weapon, location, murder);
-        } while (solution != 0);
+            }
 
+            //break;
+            }
         answer = new Theory(weapon, location, murder);
 
-        // shit is broken
         // OUTPUT
-        System.out.println("Total Checks = " + jack.getTimesAsked() + ", Solution ");
+        System.out.println("Total Checks = " + jack.getTimesAsked() + ", Solution " + answer);
 
         if (jack.getTimesAsked() > 20) {
             System.out.println("FAILED!! You're a horrible Detective...");
@@ -85,24 +118,6 @@ public class ervinClueSolver {
             System.out.println("WOW! You might as well be called Batman!");
         }
 
-        int testSolution, testMurder = 0, testWeapon=0, testLocation=0;
-        AssistantJack newJack = new AssistantJack(answerSet);
-        Theory newAnswer;
-
-        System.out.println("This is my New Jack system.");
-        do {
-            for (int i = 0; i < 6 ; i++)
-            {
-                testWeapon = i;
-                testMurder = i;
-                testLocation = i;
-            }
-
-            testSolution = newJack.checkAnswer(testWeapon, testLocation, testMurder);
-        } while (solution < 3);
-
-        newAnswer = new Theory(weapon, location, murder);
-        System.out.println("Total Checks = " + newJack.getTimesAsked() + ", Solution ");
     }
 
 }
